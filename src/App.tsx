@@ -1,5 +1,7 @@
 import { GlobalStyle, Main } from "./AppStyle"
 import { AddToListForm } from "./components/AddToListForm"
+import { ItemsList } from "./components/ItemsList"
+import ItemsProvider from "./contexts/ItemsContext"
 
 function App() {
 
@@ -7,28 +9,11 @@ function App() {
     <>
       <GlobalStyle />
       <Main>
-        <AddToListForm />
+        <ItemsProvider>
+          <AddToListForm />
 
-        <ul>
-          <li>
-            <span>Vitor</span>
-            <span>Pão</span>
-            <button>Editar</button>
-            <button>Excluir</button>
-          </li>
-          <li>
-            <span>Joyce</span>
-            <span>Refrigerante</span>
-            <button>Editar</button>
-            <button>Excluir</button>
-          </li>
-          <li>
-            <span>Vitor</span>
-            <span>Suco</span>
-            <button>Editar</button>
-            <button>Excluir</button>
-          </li>
-        </ul>
+          <ItemsList />
+        </ItemsProvider>
       </Main>
     </>
   )
