@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { render, screen, renderHook } from '@testing-library/react'
 import { Item } from './index'
 
@@ -14,6 +14,7 @@ describe('Item Component', () => {
             const [isEditing, setIsEditing] = useState(isEditingItem) 
             const [updatedWho, setUpdatedWho] = useState(who) 
             const [updatedWhat, setUpdatedWhat] = useState(what)
+            const id = itemId
             
             useEffect(() => {
                 setIsEditing(isEditingItem)
@@ -22,7 +23,7 @@ describe('Item Component', () => {
             }, [])
 
             return {
-                itemId,
+                id,
                 isEditing,
                 updatedWho,
                 updatedWhat
@@ -35,12 +36,13 @@ describe('Item Component', () => {
                 what: 'Cake'
             }
         })
+
         render(<Item item={{
-            id: result.current.itemId,
+            id: result.current.id,
             what: result.current.updatedWhat,
             who: result.current.updatedWho
         }} remove={(id) => console.log(id)} />)
 
-        expect(screen.getByRole('listitem')).toContainHTML(`<li><div><span>Vitor</span><span>Cake</span><button>Editar</button><button>Excluir</button></div></li>`)
+        expect(screen.getByTestId(`item-id-${result.current.id}`)).toContainEqual(`<div data-testid={item-id-${result.current.id}}><span>Vitor</span><span>Cake</span><button>Editar</button><button>Excluir</button></div>`)
     })
 })
