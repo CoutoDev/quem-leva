@@ -1,4 +1,4 @@
-import { Item } from "../Item"
+import Item from "../Item"
 import { useContext } from "react"
 import { ItemsContext } from "../../contexts/ItemsContext"
 
