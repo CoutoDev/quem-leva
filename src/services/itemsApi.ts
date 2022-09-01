@@ -14,7 +14,7 @@ export const items: Items = [
     },
     {
         id: uuid(),
-        who: 'Vitor',
+        who: 'Ed',
         what: 'Pie'
     }
 ]
