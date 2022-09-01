@@ -1,11 +1,11 @@
-import { useRef, useState } from "react"
+import { useRef, useState, memo } from "react"
 import { ItemType } from '../../typings/items'
 type Props = {
     item: ItemType
     remove: (id: string | number) => void
 }
 
-export const Item = ({ item, remove }: Props) => {
+const Item = ({ item, remove }: Props) => {
     const { who, what, id } = item
     const [isEditing, setIsEditing] = useState(false) 
     const [updatedWho, setUpdatedWho] = useState(who) 
@@ -30,7 +30,7 @@ export const Item = ({ item, remove }: Props) => {
                     </form>
                 )
                 : (
-                    <div>
+                    <div data-testid={`item-id-${id}`}>
                         <span>{updatedWho}</span>
                         <span>{updatedWhat}</span>
                         <button onClick={() => setIsEditing(true)}>Editar</button>
@@ -41,3 +41,5 @@ export const Item = ({ item, remove }: Props) => {
         </li>
     )
 }
+
+export default memo(Item)
